@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1664751673 source:c:\xampp\htdocs\github\boardgame\chorpolice.cpp
+	<cstdlib>
+	<iostream>
+	<time.h>
+
