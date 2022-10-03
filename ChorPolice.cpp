@@ -11,10 +11,14 @@ int number [24][4]= {{0,1,2,3}, {0,1,3,2}, {0,2,1,3}, {0,2,3,1}, {0,3,1,2}, {0,3
                     };
 
 int players[4]={4,4,4,4};
+int thief, robber, police;
+string c[4]={"chor", "dakat", "police", "daroga"};
+string finding[2]={"chor", "dakat"};
+int points[4]={0,0,0,0};
+int rounds = 0;
 int main() {
 
-//int points[4]={0,0,0,0};
-//int rounds = 0;
+
 
 srand(time(0));
 int random = rand()%24;
@@ -56,7 +60,40 @@ gameFunction(players);
 
 void gameFunction(int players[]){
 
-string c[4]={"chor", "dakat", "police", "daroga"};
+int choice;
+int findChar=rounds%2;
+cout<<endl<<"p1: "<<c[players[0]]<<endl<<"p2: "<<c[players[1]]<<endl<<"p3: "<<c[players[2]]<<endl<<"p4: "<<c[players[3]]<<endl<<"find: "<<findChar<<endl;
 
-cout<<endl<<"p1: "<<c[players[0]]<<endl<<"p2: "<<c[players[1]]<<endl<<"p3: "<<c[players[2]]<<endl<<"p4: "<<c[players[3]]<<endl;
+for(int i = 0; i < 4; i++){
+    if(players[i]==3){
+            points[i]+=1000;
+        cout<<"congratulations player "<<i+1<<", You are the Daroga"<<endl;
+    }
+}
+
+for(int i = 0; i < 4; i++){
+    if(players[i]==2){
+            police=i;
+        cout<<"Now player "<<i+1<<" is the Police. Now you have to find the " <<finding[findChar]<<endl;
+    }
+}
+cout<<"choose who is "<<finding[findChar]<<":";
+cin>>choice;
+
+for(int i = 0; i < 4; i++){
+    if(players[i]==findChar){
+        if(i+1==choice){
+        cout<<"Congrats, You have found the " <<finding[rounds%2]<<endl;
+
+        }
+        else{
+            cout<<"Ohh, you missed"<<endl;
+        }
+        break;
+    }
+}
+
+
+cout<<endl<<"p1: "<<points[0]<<endl<<"p2: "<<points[1]<<endl<<"p3: "<<points[2]<<endl<<"p4: "<<points[3]<<endl;
+
 }
