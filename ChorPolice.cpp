@@ -40,20 +40,26 @@ int main()
         pl[i].p = 10;
     }
 
+    for(int i = 1; i<=3;i++){
+            cout<<"Round "<<i<<endl;
     initialFunction();
     gameFunction(players);
+    rounds++;
+    cout<<endl<<"p1: "<<points[0]<<endl<<"p2: "<<points[1]<<endl<<"p3: "<<points[2]<<endl<<"p4: "<<points[3]<<endl;
+
+
+    }
     return 0;
 }
 void initialFunction()
 {
-
     srand(time(0));
     int random = rand()%24;
     int character [4]= {number[random][0],number[random][1],number[random][2],number[random][3]};
 
     int p1, p2, p3, p4;
     int in;
-    cout<<"random: "<<random<<endl<<"c1: "<<character[0]<<endl<<"c2: "<<character[1]<<endl<<"c3: "<<character[2]<<endl<<"c4: "<<character[3]<<endl;
+    //cout<<"random: "<<random<<endl<<"c1: "<<character[0]<<endl<<"c2: "<<character[1]<<endl<<"c3: "<<character[2]<<endl<<"c4: "<<character[3]<<endl;
 
     cout<<"choose player 1: ";
     cin>>p1;
@@ -68,7 +74,7 @@ void initialFunction()
     cin>>p4;
     players[3] = number[random][p4-1];
 
-    cout<<endl<<"p1: "<<players[0]<<endl<<"p2: "<<players[1]<<endl<<"p3: "<<players[2]<<endl<<"p4: "<<players[3]<<endl;
+    //cout<<endl<<"p1: "<<players[0]<<endl<<"p2: "<<players[1]<<endl<<"p3: "<<players[2]<<endl<<"p4: "<<players[3]<<endl;
 
 
     for(int i = 0; i < 4; i++)
@@ -98,7 +104,7 @@ void gameFunction(int players[])
 
     int choice;
     int findChar=rounds%2;
-    cout<<endl<<"p1: "<<ch[players[0]]<<endl<<"p2: "<<ch[players[1]]<<endl<<"p3: "<<ch[players[2]]<<endl<<"p4: "<<ch[players[3]]<<endl<<"find: "<<findChar<<endl;
+    //cout<<endl<<"p1: "<<ch[players[0]]<<endl<<"p2: "<<ch[players[1]]<<endl<<"p3: "<<ch[players[2]]<<endl<<"p4: "<<ch[players[3]]<<endl<<"find: "<<findChar<<endl;
 
     cout<<"congratulations player "<<pl[3].p+1<<", You are the Daroga"<<endl;
     points[pl[3].p]+=pl[3].pointWon;
@@ -164,6 +170,5 @@ void gameFunction(int players[])
             }
         }
     }
-    cout<<endl<<"p1: "<<points[0]<<endl<<"p2: "<<points[1]<<endl<<"p3: "<<points[2]<<endl<<"p4: "<<points[3]<<endl;
 
 }
