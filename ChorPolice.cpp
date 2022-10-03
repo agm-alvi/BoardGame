@@ -2,7 +2,8 @@
 #include <iostream>
 #include <time.h>
 using namespace std;
-#define NumberofPlayers 4
+#define NumberOfPlayers 4
+void initialFunction();
 void gameFunction(int players[]);
 int number [24][4]= {{0,1,2,3}, {0,1,3,2}, {0,2,1,3}, {0,2,3,1}, {0,3,1,2}, {0,3,2,1},
     {1,0,2,3}, {1,0,3,2}, {1,2,0,3}, {1,2,3,0}, {1,3,0,2}, {1,3,2,0},
@@ -17,26 +18,34 @@ struct participants
     int pointWon;
     int p;
 };
-participants pl[4];
+participants pl[NumberOfPlayers];
 
 
 int players[4]= {4,4,4,4};
-int thief, robber, police;
-string ch[4]= {"chor", "dakat", "police", "daroga"};
-int won[4]= {400,600,800,1000};
-string finding[2]= {"chor", "dakat"};
+string ch[NumberOfPlayers]= {"chor", "dakat", "police", "daroga"};
+int won[NumberOfPlayers]= {400,600,800,1000};
+
+
 int points[4]= {0,0,0,0};
 int rounds = 0;
+string finding[2]= {"chor", "dakat"};
+
 int main()
 {
-    for(int i = 0; i < 4; i++)
+    for(int i = 0; i < NumberOfPlayers; i++)
     {
         pl[i].c = ch[i];
         pl[i].character = i;
         pl[i].pointWon = won[i];
-        pl[i].p = 4;
+        pl[i].p = 10;
     }
 
+    initialFunction();
+    gameFunction(players);
+    return 0;
+}
+void initialFunction()
+{
 
     srand(time(0));
     int random = rand()%24;
@@ -82,10 +91,7 @@ int main()
         }
     }
 
-    gameFunction(players);
-    return 0;
 }
-
 
 void gameFunction(int players[])
 {
@@ -94,50 +100,70 @@ void gameFunction(int players[])
     int findChar=rounds%2;
     cout<<endl<<"p1: "<<ch[players[0]]<<endl<<"p2: "<<ch[players[1]]<<endl<<"p3: "<<ch[players[2]]<<endl<<"p4: "<<ch[players[3]]<<endl<<"find: "<<findChar<<endl;
 
-    for(int i = 0; i < 4; i++)
-    {
-        if(players[i]==3)
-        {
-            points[i]+=1000;
-            cout<<"congratulations player "<<i+1<<", You are the Daroga"<<endl;
-        }
-    }
+    cout<<"congratulations player "<<pl[3].p+1<<", You are the Daroga"<<endl;
+    points[pl[3].p]+=pl[3].pointWon;
 
-    for(int i = 0; i < 4; i++)
-    {
-        if(players[i]==2)
-        {
-            police=i;
-            cout<<"Now player "<<i+1<<" is the Police. Now you have to find the " <<finding[findChar]<<endl;
-        }
-    }
-    cout<<"choose who is "<<finding[findChar]<<":";
+
+    cout<<"Now player "<<pl[2].p+1<<" is the Police.";
+
+    cout<<" you have to find the " <<finding[findChar]<<endl;
+
+    cout<<"choose who is "<<finding[findChar]<<". between player " <<pl[0].p+1<<" & player "<< pl[1].p+1 <<": ";
     cin>>choice;
 
-    for(int i = 0; i < 4; i++)
+    if(findChar==0)
     {
-        if(players[i]==findChar)
+
+        for(int i = 0; i < 4; i++)
         {
-            if(i+1==choice)
+            if(players[i]==findChar)
             {
-                cout<<"Congrats, You have found the " <<finding[rounds%2]<<endl;
-                points[police]+=800;
-                points[i]+=0;
+                if(i+1==choice)
+                {
+                    cout<<"Congrats, You have found the " <<finding[findChar]<<endl;
+                    points[pl[2].p]+=pl[2].pointWon;
+                    points[pl[0].p]+=0;
+                }
+                else
+                {
+                    cout<<"Ohh, you missed"<<endl;
+                    points[pl[2].p]+=0;
+                    points[pl[0].p]+=pl[0].pointWon;
+                }
             }
-            else
+            if(players[i]==findChar+1)
             {
-                cout<<"Ohh, you missed"<<endl;
-                points[police]+=000;
-                points[i]+=400;
+                points[pl[1].p]+=pl[1].pointWon;
             }
-        }
-        if(players[i]==findChar+1)
-        {
-            points[i]+=600;
         }
     }
 
+    else
+    {
 
+        for(int i = 0; i < 4; i++)
+        {
+            if(players[i]==findChar)
+            {
+                if(i+1==choice)
+                {
+                    cout<<"Congrats, You have found the " <<finding[findChar]<<endl;
+                    points[pl[2].p]+=pl[2].pointWon;
+                    points[pl[1].p]+=0;
+                }
+                else
+                {
+                    cout<<"Ohh, you missed"<<endl;
+                    points[pl[2].p]+=0;
+                    points[pl[1].p]+=pl[1].pointWon;
+                }
+            }
+            if(players[i]==findChar+1)
+            {
+                points[pl[0].p]+=pl[0].pointWon;
+            }
+        }
+    }
     cout<<endl<<"p1: "<<points[0]<<endl<<"p2: "<<points[1]<<endl<<"p3: "<<points[2]<<endl<<"p4: "<<points[3]<<endl;
 
 }
