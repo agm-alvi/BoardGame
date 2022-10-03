@@ -84,12 +84,17 @@ for(int i = 0; i < 4; i++){
     if(players[i]==findChar){
         if(i+1==choice){
         cout<<"Congrats, You have found the " <<finding[rounds%2]<<endl;
-
+        points[police]+=800;
+points[i]+=0;
         }
         else{
             cout<<"Ohh, you missed"<<endl;
+            points[police]+=000;
+points[i]+=400;
         }
-        break;
+    }
+    if(players[i]==findChar+1){
+        points[i]+=600;
     }
 }
 
