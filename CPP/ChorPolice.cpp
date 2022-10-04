@@ -3,6 +3,7 @@
 #include <time.h>
 using namespace std;
 #define NumberOfPlayers 4
+#define TotalRounds 4
 void initialFunction();
 void gameFunction(int players[]);
 int number [24][4]= {{0,1,2,3}, {0,1,3,2}, {0,2,1,3}, {0,2,3,1}, {0,3,1,2}, {0,3,2,1},
@@ -40,7 +41,7 @@ int main()
         pl[i].p = 10;
     }
 
-    for(int i = 1; i<=3;i++){
+    for(int i = 1; i <=  TotalRounds;i++){
             cout<<"Round "<<i<<endl;
     initialFunction();
     gameFunction(players);
@@ -58,21 +59,20 @@ void initialFunction()
     int character [4]= {number[random][0],number[random][1],number[random][2],number[random][3]};
 
     int p1, p2, p3, p4;
-    int in;
-    //cout<<"random: "<<random<<endl<<"c1: "<<character[0]<<endl<<"c2: "<<character[1]<<endl<<"c3: "<<character[2]<<endl<<"c4: "<<character[3]<<endl;
+    cout<<"random: "<<random<<endl<<"c1: "<<character[0]<<endl<<"c2: "<<character[1]<<endl<<"c3: "<<character[2]<<endl<<"c4: "<<character[3]<<endl;
 
-    cout<<"choose player 1: ";
+    cout<<"choose player "<<(rounds+1)%4<<": ";
     cin>>p1;
-    players[0] = number[random][p1-1];
-    cout<<"choose player 2: ";
+    players[(rounds+0)%4] = number[random][p1-1];
+    cout<<"choose player "<<(rounds+2)%4<<": ";
     cin>>p2;
-    players[1] = number[random][p2-1];
-    cout<<"choose player 3: ";
+    players[(rounds+1)%4] = number[random][p2-1];
+    cout<<"choose player "<<(rounds+3)%4<<": ";
     cin>>p3;
-    players[2] = number[random][p3-1];
-    cout<<"choose player 4: ";
+    players[(rounds+2)%4] = number[random][p3-1];
+    cout<<"choose player "<<(rounds+4)%4<<": ";
     cin>>p4;
-    players[3] = number[random][p4-1];
+    players[(rounds+3)%4] = number[random][p4-1];
 
     //cout<<endl<<"p1: "<<players[0]<<endl<<"p2: "<<players[1]<<endl<<"p3: "<<players[2]<<endl<<"p4: "<<players[3]<<endl;
 
@@ -132,7 +132,7 @@ void gameFunction(int players[])
                 }
                 else
                 {
-                    cout<<"Ohh, you missed"<<endl;
+                    cout<<"Ohh, you missed. player "<<pl[0].p+1<<" was the "<<finding[findChar]<<endl;
                     points[pl[2].p]+=0;
                     points[pl[0].p]+=pl[0].pointWon;
                 }
@@ -159,7 +159,7 @@ void gameFunction(int players[])
                 }
                 else
                 {
-                    cout<<"Ohh, you missed"<<endl;
+                    cout<<"Ohh, you missed. player "<<pl[1].p+1<<" was the "<<finding[findChar]<<endl;
                     points[pl[2].p]+=0;
                     points[pl[1].p]+=pl[1].pointWon;
                 }
