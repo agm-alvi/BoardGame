@@ -10,11 +10,11 @@ int number [24][4]= {{0,1,2,3}, {0,1,3,2}, {0,2,1,3}, {0,2,3,1}, {0,3,1,2}, {0,3
     {1,0,2,3}, {1,0,3,2}, {1,2,0,3}, {1,2,3,0}, {1,3,0,2}, {1,3,2,0},
     {2,0,1,3}, {2,0,3,1}, {2,1,0,3}, {2,1,3,0}, {2,3,0,1}, {2,3,1,0},
     {3,0,1,2}, {3,0,2,1}, {3,1,0,2}, {3,1,2,0}, {3,2,0,1}, {3,2,1,0}
-};
+}; // random chit generator
 
 struct participants
 {
-    int character;
+    int character; //
     string c;
     int pointWon;
     int p;
@@ -28,11 +28,13 @@ int won[NumberOfPlayers]= {400,600,800,1000};
 
 
 int points[4]= {0,0,0,0};
-int rounds = 0;
+int roundsCount = 0;
 string finding[2]= {"chor", "dakat"};
-
+int rounds;
 int main()
 {
+    cout<<"Total Rounds: ";
+    cin>> rounds;
     for(int i = 0; i < NumberOfPlayers; i++)
     {
         pl[i].c = ch[i];
@@ -41,12 +43,13 @@ int main()
         pl[i].p = 10;
     }
 
-    for(int i = 1; i <=  TotalRounds;i++){
-            cout<<"Round "<<i<<endl;
-    initialFunction();
-    gameFunction(players);
-    rounds++;
-    cout<<endl<<"p1: "<<points[0]<<endl<<"p2: "<<points[1]<<endl<<"p3: "<<points[2]<<endl<<"p4: "<<points[3]<<endl;
+    for(int i = 1; i <=  rounds; i++)
+    {
+        cout<<"Round "<<i<<endl;
+        initialFunction();
+        gameFunction(players);
+        roundsCount++;
+        cout<<endl<<"p1: "<<points[0]<<endl<<"p2: "<<points[1]<<endl<<"p3: "<<points[2]<<endl<<"p4: "<<points[3]<<endl;
 
 
     }
@@ -59,20 +62,20 @@ void initialFunction()
     int character [4]= {number[random][0],number[random][1],number[random][2],number[random][3]};
 
     int p1, p2, p3, p4;
-    cout<<"random: "<<random<<endl<<"c1: "<<character[0]<<endl<<"c2: "<<character[1]<<endl<<"c3: "<<character[2]<<endl<<"c4: "<<character[3]<<endl;
+    // cout<<"random: "<<random<<endl<<"c1: "<<character[0]<<endl<<"c2: "<<character[1]<<endl<<"c3: "<<character[2]<<endl<<"c4: "<<character[3]<<endl;
 
-    cout<<"choose player "<<(rounds+1)%4<<": ";
+    cout<<"Player "<<(roundsCount+1)%4<<" Choose chit no: ";
     cin>>p1;
-    players[(rounds+0)%4] = number[random][p1-1];
-    cout<<"choose player "<<(rounds+2)%4<<": ";
+    players[(roundsCount+0)%4] = number[random][p1-1];
+    cout<<"Player "<<(roundsCount+2)%4<<"  Choose chit no: ";
     cin>>p2;
-    players[(rounds+1)%4] = number[random][p2-1];
-    cout<<"choose player "<<(rounds+3)%4<<": ";
+    players[(roundsCount+1)%4] = number[random][p2-1];
+    cout<<"Player "<<(roundsCount+3)%4<<"  Choose chit no: ";
     cin>>p3;
-    players[(rounds+2)%4] = number[random][p3-1];
-    cout<<"choose player "<<(rounds+4)%4<<": ";
+    players[(roundsCount+2)%4] = number[random][p3-1];
+    cout<<"Player "<<(roundsCount+4)%4<<"  Choose chit no: ";
     cin>>p4;
-    players[(rounds+3)%4] = number[random][p4-1];
+    players[(roundsCount+3)%4] = number[random][p4-1];
 
     //cout<<endl<<"p1: "<<players[0]<<endl<<"p2: "<<players[1]<<endl<<"p3: "<<players[2]<<endl<<"p4: "<<players[3]<<endl;
 
@@ -103,7 +106,7 @@ void gameFunction(int players[])
 {
 
     int choice;
-    int findChar=rounds%2;
+    int findChar=roundsCount%2;
     //cout<<endl<<"p1: "<<ch[players[0]]<<endl<<"p2: "<<ch[players[1]]<<endl<<"p3: "<<ch[players[2]]<<endl<<"p4: "<<ch[players[3]]<<endl<<"find: "<<findChar<<endl;
 
     cout<<"congratulations player "<<pl[3].p+1<<", You are the Daroga"<<endl;
@@ -170,5 +173,4 @@ void gameFunction(int players[])
             }
         }
     }
-
 }
