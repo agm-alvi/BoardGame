@@ -31,6 +31,8 @@ int points[4]= {0,0,0,0};
 int roundsCount = 0;
 string finding[2]= {"chor", "dakat"};
 int rounds;
+
+int random;
 int main()
 {
     cout<<"Total Rounds: ";
@@ -58,7 +60,7 @@ int main()
 void initialFunction()
 {
     srand(time(0));
-    int random = rand()%24;
+    random = rand()%24;
     int character [4]= {number[random][0],number[random][1],number[random][2],number[random][3]};
 
     int p1, p2, p3, p4;
@@ -117,7 +119,16 @@ void gameFunction(int players[])
 
     cout<<" you have to find the " <<finding[findChar]<<endl;
 
-    cout<<"choose who is "<<finding[findChar]<<". between player " <<pl[0].p+1<<" & player "<< pl[1].p+1 <<": ";
+
+//    if(rand()%2==0)
+    if(pl[0].p<pl[1].p)
+    {
+        cout<<"choose who is "<<finding[findChar]<<". between player " <<pl[0].p+1<<" & player "<< pl[1].p+1 <<": ";
+    }
+    else
+    {
+        cout<<"choose who is "<<finding[findChar]<<". between player " <<pl[1].p+1<<" & player "<< pl[0].p+1 <<": ";
+    }
     cin>>choice;
 
     if(findChar==0)
