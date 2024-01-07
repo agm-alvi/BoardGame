@@ -30,25 +30,45 @@ namespace ChorPoliceGame
         private void InitializeComponent()
         {
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.scoreTableDataGrid = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.scoreTableDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // mainPanel
             // 
-            this.mainPanel.Location = new System.Drawing.Point(0, 57);
+            this.mainPanel.Location = new System.Drawing.Point(0, 3);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(450, 350);
+            this.mainPanel.Size = new System.Drawing.Size(600, 580);
             this.mainPanel.TabIndex = 0;
+            // 
+            // scoreTableDataGrid
+            // 
+            this.scoreTableDataGrid.AllowUserToDeleteRows = false;
+            this.scoreTableDataGrid.AllowUserToResizeColumns = false;
+            this.scoreTableDataGrid.AllowUserToResizeRows = false;
+            this.scoreTableDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.scoreTableDataGrid.BackgroundColor = System.Drawing.SystemColors.Info;
+            this.scoreTableDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
+            this.scoreTableDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.scoreTableDataGrid.Enabled = false;
+            this.scoreTableDataGrid.Location = new System.Drawing.Point(612, 3);
+            this.scoreTableDataGrid.Name = "scoreTableDataGrid";
+            this.scoreTableDataGrid.RowTemplate.Height = 25;
+            this.scoreTableDataGrid.Size = new System.Drawing.Size(480, 580);
+            this.scoreTableDataGrid.TabIndex = 1;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(784, 411);
+            this.ClientSize = new System.Drawing.Size(1104, 591);
+            this.Controls.Add(this.scoreTableDataGrid);
             this.Controls.Add(this.mainPanel);
             this.Name = "MainForm";
             this.Text = "Chor Police";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.scoreTableDataGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -56,6 +76,7 @@ namespace ChorPoliceGame
         #endregion
 
         private System.Windows.Forms.Panel mainPanel;
+        private System.Windows.Forms.DataGridView scoreTableDataGrid;
     }
 }
 
