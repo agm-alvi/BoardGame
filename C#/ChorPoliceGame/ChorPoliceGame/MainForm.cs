@@ -12,6 +12,7 @@ namespace ChorPoliceGame
 {
     public partial class MainForm : Form
     {
+
         public GameForm gp = new GameForm();
         public HomePage hp = new HomePage();
 
@@ -53,6 +54,11 @@ namespace ChorPoliceGame
             gp.BringToFront();
         }
 
+        public void clearScoreTable()
+        {
+//            dt.Clear();
+            dt.Reset();
+        }
         public void addScoreTableHeader(String name1, String name2, String name3, String name4)
         {
             dt.Columns.Add("Round", Type.GetType("System.String"));

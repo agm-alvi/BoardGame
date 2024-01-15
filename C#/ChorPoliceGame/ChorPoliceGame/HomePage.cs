@@ -27,6 +27,7 @@ namespace ChorPoliceGame
         private void btnStartGame_Click(object sender, EventArgs e)
         {
             assignNames();
+            setTotalRounds();
             mainForm.showGamePage();
         }
 
@@ -48,9 +49,17 @@ namespace ChorPoliceGame
             {
                 mainForm.names[3] = player4Name.Text;
             }
-
             
             mainForm.addScoreTableHeader(mainForm.names[0], mainForm.names[1], mainForm.names[2], mainForm.names[3]);
+        }
+
+        public void setTotalRounds()
+        {
+            if (RoundsTextBox.Text != "")
+            {
+                mainForm.totalRounds = int.Parse(RoundsTextBox.Text);
+            
+            }
         }
     }
 }

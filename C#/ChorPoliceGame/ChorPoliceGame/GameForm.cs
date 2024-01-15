@@ -12,16 +12,36 @@ namespace ChorPoliceGame
 {
     public partial class GameForm : UserControl
     {
+        public const int NumberOfPlayers = 4;
+
         MainForm mainForm;
         int playerNo;
         int chitBtnClicked = 0;
         int[] chitSelect = { 0, 0, 0, 0 };
-        string[] findBetween = {"Chor", "Dakat"};
         int whomToSearch;
         int pointDistribution; //1 = police 0, 2=chor 0, 3=dakat 0;
 
-        int policeChoice;
+        int[,] chitSl = {{0,1,2,3}, {0,1,3,2}, {0,2,1,3}, {0,2,3,1}, {0,3,1,2}, {0,3,2,1},
+                        {1,0,2,3}, {1,0,3,2}, {1,2,0,3}, {1,2,3,0}, {1,3,0,2}, {1,3,2,0},
+                        {2,0,1,3}, {2,0,3,1}, {2,1,0,3}, {2,1,3,0}, {2,3,0,1}, {2,3,1,0},
+                        {3,0,1,2}, {3,0,2,1}, {3,1,0,2}, {3,1,2,0}, {3,2,0,1}, {3,2,1,0}
+                         };
 
+        int[,] playersSl = { { 1, 2, 3, 4 }, { 2, 3, 4, 1 }, { 3, 4, 1, 2 }, { 4, 1, 2, 3 } };
+
+        int rnd;//randomizer
+        int findingRnd;
+
+        string[] ch = { "Chor", "Dakat", "Police", "Daroga" };
+        string[] chBn = { "চোর", "ডাকাত", "পুলিশ", "দারোগা" };
+
+        int[] roundPoints = { 0, 0, 0, 0 };
+
+        int policeChoice;
+        public enum characters
+        {
+            Chor, Dakat, Police, Daroga
+        }
 
         public GameForm()
         {
@@ -30,6 +50,7 @@ namespace ChorPoliceGame
         public GameForm(MainForm form)
         {
             InitializeComponent();
+            randomGenerator();
             mainForm = form;
         }
 
@@ -54,7 +75,9 @@ namespace ChorPoliceGame
 
             }
             chit1.Enabled = false;
-            chitSelect[chitBtnClicked] = 1;
+            chit1.Text = mainForm.names[chitBtnClicked];
+            //chitSelect[chitBtnClicked] = 1;
+            chitSelect[chitSl[rnd,0]] = 1;
             chitBtnClicked++;
             guessingPart();
         }
@@ -66,7 +89,9 @@ namespace ChorPoliceGame
 
             }
             chit2.Enabled = false;
-            chitSelect[chitBtnClicked] = 2;
+            chit2.Text = mainForm.names[chitBtnClicked];
+            //chitSelect[chitBtnClicked] = 2; 
+            chitSelect[chitSl[rnd, 1]] = 2;
             chitBtnClicked++;
             guessingPart();
         }
@@ -78,7 +103,9 @@ namespace ChorPoliceGame
 
             }
             chit3.Enabled = false;
-            chitSelect[chitBtnClicked] = 3;
+            //chitSelect[chitBtnClicked] = 3;
+            chit3.Text = mainForm.names[chitBtnClicked];
+            chitSelect[chitSl[rnd, 2]] = 3;
             chitBtnClicked++;
             guessingPart();
         }
@@ -90,15 +117,22 @@ namespace ChorPoliceGame
 
             }
             chit4.Enabled = false;
-            chitSelect[chitBtnClicked] = 4;
+            //chitSelect[chitBtnClicked] = 4;
+            chit4.Text = mainForm.names[chitBtnClicked];
+            chitSelect[chitSl[rnd, 3]] = 4;
             chitBtnClicked++;
             guessingPart();
         }
 
+        void randomGenerator()
+        {
+            Random rand = new Random();
+            rnd = rand.Next(0,24);
+            findingRnd = rnd % 2;
+        }
 
         void guessingPart()
         {
-            
             if (chitBtnClicked < 4)
             {
                 string labelText = mainForm.names[chitBtnClicked] + " Select a chit";
@@ -111,12 +145,21 @@ namespace ChorPoliceGame
             }
             whomToSearch = mainForm.rounds % 2;
 
-            headFoundLabel.Text = mainForm.names[chitSelect[0]-1] + " is The Head";
-            policeGuessLabel.Text = mainForm.names[chitSelect[1]-1] + " is Police";
-            findBetweenLabel.Text = "Please find " + findBetween[whomToSearch] + " between: ";
+            headFoundLabel.Text = mainForm.names[chitSelect[0]-1] + " is The "+ch[3];
+            policeGuessLabel.Text = mainForm.names[chitSelect[1]-1] + " is "+ch[2];
+            findBetweenLabel.Text = "Please find " + ch[whomToSearch] + " between: ";
 
-            policeChoice1.Text = ""+ mainForm.names[chitSelect[2]-1];
-            policeChoice2.Text = ""+ mainForm.names[chitSelect[3]-1];
+            switch (findingRnd)
+            {
+                case 0:
+                    policeChoice1.Text = ""+ mainForm.names[chitSelect[3]-1];
+                    policeChoice2.Text = ""+ mainForm.names[chitSelect[2]-1];
+                    break;
+                case 1:
+                    policeChoice1.Text = ""+ mainForm.names[chitSelect[2]-1];
+                    policeChoice2.Text = ""+ mainForm.names[chitSelect[3]-1];
+                    break;
+            }
             policeChoice1.Visible = true;
             policeChoice2.Visible = true;
 
@@ -124,21 +167,36 @@ namespace ChorPoliceGame
 
         private void policeChoice1_Click(object sender, EventArgs e)
         {
-            policeChoice = chitSelect[2];
+            policeChoice = 1;
+            policeChoice1.BackColor = Color.Azure;
             calcResults();
         }
 
         private void policeChoice2_Click(object sender, EventArgs e)
         {
-            policeChoice = chitSelect[3];
+            policeChoice = 2;
+            policeChoice1.BackColor = Color.Azure;
             calcResults();
         }
 
         void calcResults()
         {
-            if (policeChoice == chitSelect[2])
+            if (findingRnd == 0 && policeChoice == 1)
             {
-                answerLabel.Text = "The " + findBetween[whomToSearch] +" is Caught ";
+                answerLabel.Text = "The " + ch[whomToSearch] +" is Caught ";
+                if (whomToSearch == 0)
+                {
+                    pointDistribution = 2;
+                }
+                else
+                {
+                    pointDistribution = 3;
+                }
+
+            }
+            else if (findingRnd == 1 && policeChoice == 2)
+            {
+                answerLabel.Text = "The " + ch[whomToSearch] + " is Caught ";
                 if (whomToSearch == 0)
                 {
                     pointDistribution = 2;
@@ -150,7 +208,7 @@ namespace ChorPoliceGame
             }
             else
             {
-                answerLabel.Text = "The  " + findBetween[whomToSearch] + "  is Missed ";
+                answerLabel.Text = "The  " + ch[whomToSearch] + "  is Missed ";
                 pointDistribution = 1;
             }
 
@@ -160,29 +218,34 @@ namespace ChorPoliceGame
         void setScore()
         {
 
-            mainForm.points[chitSelect[0]-1] += 1000;
+            roundPoints[chitSelect[0] - 1] = 1000;
 
             switch (pointDistribution)
             {
                 case 1:
-                    mainForm.points[chitSelect[1]-1] += 0;
-                    mainForm.points[chitSelect[2]-1] += 600;
-                    mainForm.points[chitSelect[3]-1] += 400;
+                    roundPoints[chitSelect[1] - 1] = 0;
+                    roundPoints[chitSelect[2] - 1] = 600;
+                    roundPoints[chitSelect[3] - 1] = 400;
                     break;
                 case 2:
-                    mainForm.points[chitSelect[1]-1] += 800;
-                    mainForm.points[chitSelect[2]-1] += 600;
-                    mainForm.points[chitSelect[3]-1] += 0;
+                    roundPoints[chitSelect[1] - 1] = 800;
+                    roundPoints[chitSelect[2] - 1] = 600;
+                    roundPoints[chitSelect[3] - 1] = 0;
                     break;
                 case 3:
-                    mainForm.points[chitSelect[1]-1] += 800;
-                    mainForm.points[chitSelect[2]-1] += 0;
-                    mainForm.points[chitSelect[3]-1] += 400;
+                    roundPoints[chitSelect[1] - 1] = 800;
+                    roundPoints[chitSelect[2] - 1] = 0;
+                    roundPoints[chitSelect[3] - 1] = 400;
                     break;
             }
 
 
-            mainForm.addScoresToTable(mainForm.points[0], mainForm.points[1], mainForm.points[2], mainForm.points[3]);
+            for (int i = 0; i < 4; i++)
+            {
+                mainForm.points[i] += roundPoints[i];
+            }
+
+            mainForm.addScoresToTable(roundPoints[0], roundPoints[1], roundPoints[2], roundPoints[3]);
         }
 
         void calculateScore()
@@ -199,9 +262,15 @@ namespace ChorPoliceGame
             mainForm.rounds++;
             setScore();
 
-            if (mainForm.rounds >= mainForm.totalRounds)
+            if (mainForm.rounds == mainForm.totalRounds)
             {
                 calculateScore();
+                btnNextRound.Text = "Play Again";
+            }
+            else if (mainForm.rounds >= mainForm.totalRounds)
+            {
+                mainForm.clearScoreTable();
+                mainForm.showHomePage();
             }
             else
             {

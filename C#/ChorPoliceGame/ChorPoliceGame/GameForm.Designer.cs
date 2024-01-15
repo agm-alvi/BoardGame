@@ -46,12 +46,13 @@ namespace ChorPoliceGame
             // 
             // chit1
             // 
+            this.chit1.FlatAppearance.BorderSize = 3;
             this.chit1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 24F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.chit1.Location = new System.Drawing.Point(68, 120);
-            this.chit1.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
+            this.chit1.Location = new System.Drawing.Point(58, 104);
+            this.chit1.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
             this.chit1.Name = "chit1";
-            this.chit1.Size = new System.Drawing.Size(100, 100);
-            this.chit1.TabIndex = 0;
+            this.chit1.Size = new System.Drawing.Size(220, 80);
+            this.chit1.TabIndex = 1;
             this.chit1.Text = "1";
             this.chit1.UseVisualStyleBackColor = true;
             this.chit1.Click += new System.EventHandler(this.chit1_Click);
@@ -59,11 +60,11 @@ namespace ChorPoliceGame
             // chit2
             // 
             this.chit2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 24F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.chit2.Location = new System.Drawing.Point(174, 120);
-            this.chit2.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
+            this.chit2.Location = new System.Drawing.Point(319, 104);
+            this.chit2.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
             this.chit2.Name = "chit2";
-            this.chit2.Size = new System.Drawing.Size(100, 100);
-            this.chit2.TabIndex = 1;
+            this.chit2.Size = new System.Drawing.Size(220, 80);
+            this.chit2.TabIndex = 2;
             this.chit2.Text = "2";
             this.chit2.UseVisualStyleBackColor = true;
             this.chit2.Click += new System.EventHandler(this.chit2_Click);
@@ -71,11 +72,11 @@ namespace ChorPoliceGame
             // chit4
             // 
             this.chit4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 24F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.chit4.Location = new System.Drawing.Point(387, 120);
-            this.chit4.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
+            this.chit4.Location = new System.Drawing.Point(319, 199);
+            this.chit4.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
             this.chit4.Name = "chit4";
-            this.chit4.Size = new System.Drawing.Size(100, 100);
-            this.chit4.TabIndex = 3;
+            this.chit4.Size = new System.Drawing.Size(220, 80);
+            this.chit4.TabIndex = 4;
             this.chit4.Text = "4";
             this.chit4.UseVisualStyleBackColor = true;
             this.chit4.Click += new System.EventHandler(this.chit4_Click);
@@ -83,11 +84,11 @@ namespace ChorPoliceGame
             // chit3
             // 
             this.chit3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 24F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.chit3.Location = new System.Drawing.Point(281, 120);
-            this.chit3.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
+            this.chit3.Location = new System.Drawing.Point(58, 199);
+            this.chit3.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
             this.chit3.Name = "chit3";
-            this.chit3.Size = new System.Drawing.Size(100, 100);
-            this.chit3.TabIndex = 2;
+            this.chit3.Size = new System.Drawing.Size(220, 80);
+            this.chit3.TabIndex = 3;
             this.chit3.Text = "3";
             this.chit3.UseVisualStyleBackColor = true;
             this.chit3.Click += new System.EventHandler(this.chit3_Click);
@@ -95,18 +96,18 @@ namespace ChorPoliceGame
             // chitCHoosingLabel
             // 
             this.chitCHoosingLabel.AutoSize = true;
-            this.chitCHoosingLabel.Location = new System.Drawing.Point(7, 71);
-            this.chitCHoosingLabel.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.chitCHoosingLabel.Location = new System.Drawing.Point(6, 61);
+            this.chitCHoosingLabel.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.chitCHoosingLabel.Name = "chitCHoosingLabel";
-            this.chitCHoosingLabel.Size = new System.Drawing.Size(227, 37);
+            this.chitCHoosingLabel.Size = new System.Drawing.Size(192, 32);
             this.chitCHoosingLabel.TabIndex = 4;
             this.chitCHoosingLabel.Text = "Choose a chit";
             // 
             // policeChoice2
             // 
-            this.policeChoice2.Location = new System.Drawing.Point(297, 400);
+            this.policeChoice2.Location = new System.Drawing.Point(283, 433);
             this.policeChoice2.Name = "policeChoice2";
-            this.policeChoice2.Size = new System.Drawing.Size(194, 54);
+            this.policeChoice2.Size = new System.Drawing.Size(165, 47);
             this.policeChoice2.TabIndex = 5;
             this.policeChoice2.Text = "choice2";
             this.policeChoice2.UseVisualStyleBackColor = true;
@@ -114,9 +115,9 @@ namespace ChorPoliceGame
             // 
             // policeChoice1
             // 
-            this.policeChoice1.Location = new System.Drawing.Point(72, 400);
+            this.policeChoice1.Location = new System.Drawing.Point(102, 433);
             this.policeChoice1.Name = "policeChoice1";
-            this.policeChoice1.Size = new System.Drawing.Size(206, 54);
+            this.policeChoice1.Size = new System.Drawing.Size(175, 47);
             this.policeChoice1.TabIndex = 6;
             this.policeChoice1.Text = "choice1";
             this.policeChoice1.UseVisualStyleBackColor = true;
@@ -125,48 +126,48 @@ namespace ChorPoliceGame
             // headFoundLabel
             // 
             this.headFoundLabel.AutoSize = true;
-            this.headFoundLabel.Location = new System.Drawing.Point(6, 239);
-            this.headFoundLabel.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.headFoundLabel.Location = new System.Drawing.Point(8, 304);
+            this.headFoundLabel.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.headFoundLabel.Name = "headFoundLabel";
-            this.headFoundLabel.Size = new System.Drawing.Size(300, 37);
+            this.headFoundLabel.Size = new System.Drawing.Size(254, 32);
             this.headFoundLabel.TabIndex = 7;
             this.headFoundLabel.Text = "Player 000 is head";
             // 
             // policeGuessLabel
             // 
             this.policeGuessLabel.AutoSize = true;
-            this.policeGuessLabel.Location = new System.Drawing.Point(9, 291);
-            this.policeGuessLabel.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.policeGuessLabel.Location = new System.Drawing.Point(8, 345);
+            this.policeGuessLabel.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.policeGuessLabel.Name = "policeGuessLabel";
-            this.policeGuessLabel.Size = new System.Drawing.Size(317, 37);
+            this.policeGuessLabel.Size = new System.Drawing.Size(267, 32);
             this.policeGuessLabel.TabIndex = 8;
             this.policeGuessLabel.Text = "player 000 is police";
             // 
             // findBetweenLabel
             // 
             this.findBetweenLabel.AutoSize = true;
-            this.findBetweenLabel.Location = new System.Drawing.Point(9, 349);
-            this.findBetweenLabel.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.findBetweenLabel.Location = new System.Drawing.Point(8, 385);
+            this.findBetweenLabel.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.findBetweenLabel.Name = "findBetweenLabel";
-            this.findBetweenLabel.Size = new System.Drawing.Size(304, 37);
+            this.findBetweenLabel.Size = new System.Drawing.Size(257, 32);
             this.findBetweenLabel.TabIndex = 9;
             this.findBetweenLabel.Text = "Find chor between";
             // 
             // answerLabel
             // 
             this.answerLabel.AutoSize = true;
-            this.answerLabel.Location = new System.Drawing.Point(9, 464);
-            this.answerLabel.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.answerLabel.Location = new System.Drawing.Point(8, 490);
+            this.answerLabel.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.answerLabel.Name = "answerLabel";
-            this.answerLabel.Size = new System.Drawing.Size(135, 37);
+            this.answerLabel.Size = new System.Drawing.Size(114, 32);
             this.answerLabel.TabIndex = 10;
             this.answerLabel.Text = "Answer";
             // 
             // btnNextRound
             // 
-            this.btnNextRound.Location = new System.Drawing.Point(161, 509);
+            this.btnNextRound.Location = new System.Drawing.Point(198, 532);
             this.btnNextRound.Name = "btnNextRound";
-            this.btnNextRound.Size = new System.Drawing.Size(211, 46);
+            this.btnNextRound.Size = new System.Drawing.Size(179, 40);
             this.btnNextRound.TabIndex = 11;
             this.btnNextRound.Text = "Next Round";
             this.btnNextRound.UseVisualStyleBackColor = true;
@@ -175,18 +176,18 @@ namespace ChorPoliceGame
             // roundNoLabel
             // 
             this.roundNoLabel.AutoSize = true;
-            this.roundNoLabel.Location = new System.Drawing.Point(161, 17);
-            this.roundNoLabel.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.roundNoLabel.Location = new System.Drawing.Point(137, 15);
+            this.roundNoLabel.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.roundNoLabel.Name = "roundNoLabel";
-            this.roundNoLabel.Size = new System.Drawing.Size(117, 37);
+            this.roundNoLabel.Size = new System.Drawing.Size(98, 32);
             this.roundNoLabel.TabIndex = 12;
             this.roundNoLabel.Text = "Round";
             // 
             // GameForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(20F, 37F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.Controls.Add(this.roundNoLabel);
             this.Controls.Add(this.btnNextRound);
             this.Controls.Add(this.answerLabel);
@@ -200,8 +201,8 @@ namespace ChorPoliceGame
             this.Controls.Add(this.chit3);
             this.Controls.Add(this.chit2);
             this.Controls.Add(this.chit1);
-            this.Font = new System.Drawing.Font("Arial Rounded MT Bold", 24F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
+            this.Font = new System.Drawing.Font("Arial Rounded MT Bold", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
             this.Name = "GameForm";
             this.Size = new System.Drawing.Size(600, 580);
             this.Load += new System.EventHandler(this.GameForm_Load);
