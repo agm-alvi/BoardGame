@@ -21,12 +21,6 @@ namespace ChorPoliceGame
         int whomToSearch;
         int pointDistribution; //1 = police 0, 2=chor 0, 3=dakat 0;
 
-        int[,] chitSl = {{0,1,2,3}, {0,1,3,2}, {0,2,1,3}, {0,2,3,1}, {0,3,1,2}, {0,3,2,1},
-                        {1,0,2,3}, {1,0,3,2}, {1,2,0,3}, {1,2,3,0}, {1,3,0,2}, {1,3,2,0},
-                        {2,0,1,3}, {2,0,3,1}, {2,1,0,3}, {2,1,3,0}, {2,3,0,1}, {2,3,1,0},
-                        {3,0,1,2}, {3,0,2,1}, {3,1,0,2}, {3,1,2,0}, {3,2,0,1}, {3,2,1,0}
-                         };
-
         int[,] playersSl = { { 1, 2, 3, 4 }, { 2, 3, 4, 1 }, { 3, 4, 1, 2 }, { 4, 1, 2, 3 } };
 
         int rnd;//randomizer
@@ -76,10 +70,12 @@ namespace ChorPoliceGame
             }
             chit1.Enabled = false;
             chit1.Text = mainForm.names[chitBtnClicked];
-            //chitSelect[chitBtnClicked] = 1;
-            chitSelect[chitSl[rnd,0]] = 1;
+            chitSelect[MainForm.global.chitSl[rnd, 0]] = 1;
+
             chitBtnClicked++;
             guessingPart();
+
+            //ClickedChitBtn(1);
         }
 
         private void chit2_Click(object sender, EventArgs e)
@@ -90,8 +86,7 @@ namespace ChorPoliceGame
             }
             chit2.Enabled = false;
             chit2.Text = mainForm.names[chitBtnClicked];
-            //chitSelect[chitBtnClicked] = 2; 
-            chitSelect[chitSl[rnd, 1]] = 2;
+            chitSelect[MainForm.global.chitSl[rnd, 1]] = 2;
             chitBtnClicked++;
             guessingPart();
         }
@@ -103,9 +98,8 @@ namespace ChorPoliceGame
 
             }
             chit3.Enabled = false;
-            //chitSelect[chitBtnClicked] = 3;
             chit3.Text = mainForm.names[chitBtnClicked];
-            chitSelect[chitSl[rnd, 2]] = 3;
+            chitSelect[MainForm.global.chitSl[rnd, 2]] = 3;
             chitBtnClicked++;
             guessingPart();
         }
@@ -117,11 +111,24 @@ namespace ChorPoliceGame
 
             }
             chit4.Enabled = false;
-            //chitSelect[chitBtnClicked] = 4;
             chit4.Text = mainForm.names[chitBtnClicked];
-            chitSelect[chitSl[rnd, 3]] = 4;
+            chitSelect[MainForm.global.chitSl[rnd, 3]] = 4;
             chitBtnClicked++;
             guessingPart();
+        }
+
+        private void ClickedChitBtn(int chitno)
+        {
+            switch (chitno)
+            {
+                case 1:
+                    chit1.Enabled = false;
+                    break;
+            }
+
+            chitBtnClicked++;
+            guessingPart();
+
         }
 
         void randomGenerator()
@@ -222,17 +229,17 @@ namespace ChorPoliceGame
 
             switch (pointDistribution)
             {
-                case 1:
+                case 1: //if Police Fails
                     roundPoints[chitSelect[1] - 1] = 0;
                     roundPoints[chitSelect[2] - 1] = 600;
                     roundPoints[chitSelect[3] - 1] = 400;
                     break;
-                case 2:
+                case 2: // if Chor Caught
                     roundPoints[chitSelect[1] - 1] = 800;
                     roundPoints[chitSelect[2] - 1] = 600;
                     roundPoints[chitSelect[3] - 1] = 0;
                     break;
-                case 3:
+                case 3: // if Dakat Caught
                     roundPoints[chitSelect[1] - 1] = 800;
                     roundPoints[chitSelect[2] - 1] = 0;
                     roundPoints[chitSelect[3] - 1] = 400;
@@ -248,10 +255,10 @@ namespace ChorPoliceGame
             mainForm.addScoresToTable(roundPoints[0], roundPoints[1], roundPoints[2], roundPoints[3]);
         }
 
-        void calculateScore()
+        void CalculateScore()
         {
-            
-            mainForm.addResultsToTable(mainForm.points[0], mainForm.points[1], mainForm.points[2], mainForm.points[3]);
+            mainForm.AddResultsToTable();
+            //mainForm.addResultsToTable(mainForm.points[0], mainForm.points[1], mainForm.points[2], mainForm.points[3]);
            
             //Application.Exit();
         }
@@ -264,7 +271,7 @@ namespace ChorPoliceGame
 
             if (mainForm.rounds == mainForm.totalRounds)
             {
-                calculateScore();
+                CalculateScore();
                 btnNextRound.Text = "Play Again";
             }
             else if (mainForm.rounds >= mainForm.totalRounds)
